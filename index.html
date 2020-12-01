@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Puzzle</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            font-family:Arial, sans-serif;
+        }
+        #game-container {
+            width:100%;
+            height:100vh;
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-image:url("image/background.jpg");
+        }
+        #main {
+            width:374px;
+            height:742px;
+        }
+        table {
+            display:inline-block;
+            margin:0;
+            padding:0;
+        }
+
+        .boxRow {
+            display:block;
+        }
+        .box {
+            width:35px;
+            height:35px;
+            border:1px solid midnightblue;
+            display:inline-block;
+        }
+
+        #left-bar {
+            width:300px;
+            height:738px;
+            border:1px solid greenyellow;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+            border-right: none;
+        }
+        .button {
+            display:inline-block;
+            width:90px;
+            height:90px;
+            border:2px solid greenyellow;
+            margin-left:5px;
+            border-radius:10px;
+            background-color:black;
+            color:greenyellow;
+            font-size:20px;
+            margin-bottom: 5px;
+        }
+        #display-score {
+            margin-top:50px;
+            text-align:center;
+            width:92%;
+            border-radius: 10px;
+            color:greenyellow;
+            font-size:50px;
+            margin-left: 10px;
+            height:200px;
+            border:2px solid greenyellow;
+        }
+
+        #display-top-scores {
+            width:300px;
+            height:740px;
+            border:1px solid greenyellow;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+            border-left: none;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-over {
+            width:100%;
+            height:100%;
+            font-size:50px;
+            color:greenyellow;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #input-name {
+            width:200px;
+            height:50px;
+            font-size:15px;
+            border-radius: 10px;
+            background-color:black;
+            color:greenyellow;
+            border:none;
+        }
+        #table-top-score {
+            color:red;
+            border:1px solid red;
+            width:80%;
+            height:80%;
+            border-radius: 10px;
+            border-collapse: collapse;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #table-top-score td {
+            border:1px solid red;
+            width:100px;
+            height:60px;
+            font-size:20px;
+            text-align:center;
+
+        }
+    </style>
+</head>
+<body onload="start()">
+<div id="game-container">
+    <div id="left-bar">
+        <br>
+        <button onclick="start()" class="button">Restart</button>
+        <button id="pause" onclick="pauseGame()" class="button">Pause</button>
+        <button id="mute" onclick="mute()" class="button">Mute</button>
+        <button onclick="changeSpeed(750)" class="button">Easy</button>
+        <button onclick="changeSpeed(500)" class="button">Medium</button>
+        <button onclick="changeSpeed(200)" class="button">Hard</button>
+        <div id="display-score"></div>
+        <div style="font-size:20px;margin:50px auto auto 30px;display:block;width:100%;color:greenyellow">
+            <h2>GUIDE</h2>
+            <br>
+            <p>Left to move left</p>
+            <p>Right to move right</p>
+            <p>Down to move down faster</p>
+            <p>Up to change shape of figure</p>
+        </div>
+    </div>
+    <table id="main">
+        <!-- main screen to play game -->
+    </table>
+    <div id="display-top-scores"></div>
+</div>
+<script src="Figure.js"></script>
+<script src="Sticker.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
