@@ -396,10 +396,10 @@ function mute()
 
 /*to reset local storage*/
 
-/*localStorage.clear();
+localStorage.clear();
 localStorage.setItem('Thư1','140');
 localStorage.setItem('Thư2','120');
 localStorage.setItem('Henry','20');
 localStorage.setItem('Jack','10');
-localStorage.setItem('Tom','0');*/
+localStorage.setItem('Tom','0');
 
