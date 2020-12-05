@@ -7,6 +7,7 @@ let isPlaying=true;
 let topList={};
 let musicGame=new Audio('https://audio-previews.elements.envatousercontent.com/files/301582762/preview.mp3');
 let isMute=false;
+let requestChangeSpeed=-1;
 /**/
 /**/
 function newGame()
@@ -101,18 +102,6 @@ function removeFigure()
 }
 let idAutoMoveDown;
 let idIncreaseSpeed;
-function autoMoveDown()
-{
-    let speed_=speed;
-    idAutoMoveDown=setInterval(function(){if(isPlaying==false) return;removeFigure();figure.moveDown();displayFigure()},speed_);
-    idIncreaseSpeed=setInterval(function()
-    {
-        clearInterval(idAutoMoveDown);
-        if(speed_>200) speed_-=10;
-        console.log(speed_);
-        idAutoMoveDown=setInterval(function(){if(isPlaying==false) return;removeFigure();figure.moveDown();displayFigure()},speed_);
-    },10000);
-}
 function changeStyle(event)
 {
     if(isPlaying==false) return;
@@ -148,8 +137,17 @@ function changeStyle(event)
         figure.moveDown();
         displayFigure();
     }
+    if(event.keyCode==32)
+    {
+        let audio_=new Audio('https://audio-previews.elements.envatousercontent.com/files/230927277/preview.mp3');
+        audio_.play();
+        removeFigure();
+        while(checkToAppend()==false)
+        {
+            figure.moveDown();
+        }
+    }
 }
-
 function checkCanMoveLeft()
 {
     for(let i=0;i<figure.coordsList.length;i++)
@@ -194,13 +192,16 @@ function checkToAppend()
         {
             figureMoveUp();
             appendFigureToSticker();
+            return true;
         }
         if(sticker.getIndex([figure.coordsList[i][0],figure.coordsList[i][1]])!=-1)
         {
             figureMoveUp();
             appendFigureToSticker();
+            return true;
         }
     }
+    return false;
 }
 function figureMoveUp()
 {
@@ -249,16 +250,37 @@ function displayScore()
     let node=document.getElementById('display-score');
     node.innerHTML=`<h1>Score</h1>  ${score}`;
 }
-function increaseSpeed()
-{
-    idIncreaseSpeed=setInterval(function(){ if(speed > 100)speed-=50},1000);
-}
 function start()
 {
+    clearInterval(idIncreaseSpeed);
+    function autoMoveDown()
+    {
+        let speed_=speed;
+        idAutoMoveDown=setInterval(function(){if(isPlaying==false) return;removeFigure();figure.moveDown();displayFigure()},speed_);
+        idIncreaseSpeed=setInterval(function()
+        {
+            /*check request change speed*/
+            if(requestChangeSpeed!=-1)// requestChangeSpeed != -1 : requesting change speed
+            {
+                speed_=requestChangeSpeed;
+                requestChangeSpeed=-1; // reset request
+            }
+
+            clearInterval(idAutoMoveDown);
+            if(speed_>200) speed_-=10;
+            console.log(speed_);
+            idAutoMoveDown=setInterval(function(){if(isPlaying==false) return;removeFigure();figure.moveDown();displayFigure()},speed_);
+        },10000);
+    }
+    speed=500;
+
+    /*for audio game*/
     let audio=new Audio('https://audio-previews.elements.envatousercontent.com/files/136199140/preview.mp3');
     audio.play();
     musicGame.loop=true;
     musicGame.play();
+
+    /**/
     displayHighScore();
     score=0;
     clearInterval(idAutoMoveDown);
@@ -271,11 +293,12 @@ function start()
 }
 function endGame()
 {
+    clearInterval(idIncreaseSpeed);
     let audio=new Audio('https://audio-previews.elements.envatousercontent.com/files/98702224/preview.mp3');
     audio.play();
     isPlaying=false;
     let content=`<div class="game-over">GAME OVER<button class="button" onclick="start()">New Game</button>`;
-    if(checkHighScore()==true) content+=`<br><p style="font-size:20px">Your got a high score !</p><input type="text" id="input-name" placeholder="Type your name . . ."><button class="button" style="width:50px;height:30px" onclick="saveHighScore()">Save</button>`;
+    if(checkHighScore()==true) content+=`<br><p style="font-size:20px">You got a high score!</p><input type="text" id="input-name" onchange="saveHighScore()" placeholder="Type your name . . .">`;
     content+=`</div>`;
     document.getElementById('main').innerHTML=content;
 }
@@ -294,12 +317,13 @@ function changeSpeed(value)
 {
     let audio=new Audio('https://audio-previews.elements.envatousercontent.com/files/136199140/preview.mp3');
     audio.play();
-    speed=value;
+    requestChangeSpeed=value; // will check in loop increase speed
 }
 
 /*latest*/
 function saveHighScore()
 {
+    if(document.getElementById('input-name').value==``) return;
     let arr=[];
     for(let i=0;i<localStorage.length;i++)
     {
@@ -324,6 +348,8 @@ function saveHighScore()
     {
         localStorage.setItem(arr[i][0],arr[i][1]);
     }
+    document.getElementById('input-name').value=``;
+    displayHighScore();
 }
 function displayHighScore()
 {
@@ -371,9 +397,9 @@ function mute()
 /*to reset local storage*/
 
 /*localStorage.clear();
-localStorage.setItem('per1','10');
-localStorage.setItem('per2','9');
-localStorage.setItem('per3','8');
-localStorage.setItem('per4','15');
-localStorage.setItem('per5','0');*/
+localStorage.setItem('Thư1','140');
+localStorage.setItem('Thư2','120');
+localStorage.setItem('Henry','20');
+localStorage.setItem('Jack','10');
+localStorage.setItem('Tom','0');*/
 
