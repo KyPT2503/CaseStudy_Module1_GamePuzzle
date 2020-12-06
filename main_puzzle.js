@@ -252,6 +252,7 @@ function displayScore()
 }
 function start()
 {
+    document.getElementById('description').style.display=`none`;
     clearInterval(idIncreaseSpeed);
     function autoMoveDown()
     {
@@ -394,12 +395,17 @@ function mute()
     }
 }
 
+function displayDescription()
+{
+    document.getElementById('description').style.display=`flex`;
+}
+
 /*to reset local storage*/
 
-localStorage.clear();
-localStorage.setItem('Thư1','140');
-localStorage.setItem('Thư2','120');
-localStorage.setItem('Henry','20');
-localStorage.setItem('Jack','10');
-localStorage.setItem('Tom','0');
+/*localStorage.clear();
+localStorage.setItem('Thư1','10');
+localStorage.setItem('Thư2','0');
+localStorage.setItem('Thư3','0');
+localStorage.setItem('Thư4','0');
+localStorage.setItem('Thư5','0');*/
 

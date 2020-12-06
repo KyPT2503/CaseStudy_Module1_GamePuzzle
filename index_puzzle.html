@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Puzzle</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="style_puzzle.css" type="text/css">
 </head>
-<body onload="start()">
+<body onload="displayDescription()">
 <div id="game-container">
     <div id="left-bar">
         <br>
-        <button onclick="start()" class="button">Restart</button>
+        <button onclick="start()" class="button">Play</button>
         <button id="pause" onclick="pauseGame()" class="button">Pause</button>
         <button id="mute" onclick="mute()" class="button">Mute</button>
         <button onclick="changeSpeed(750)" class="button">Easy</button>
@@ -29,10 +29,23 @@
     <table id="main">
         <!-- main screen to play game -->
     </table>
+    <div id="description">
+        <h1>Author: Phan Thế Kỷ</h1>
+        <br>
+        <div>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Read the guide at left bar, please.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Click on Easy to turn on hard mode, or Medium, Hard, whether what is lever now, it will turn to the mode you chose.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Top score will save at left bar, you can see when playing.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Did you play this kind of game before? If you don't, lets find out its attractive.</p>
+        </div>
+        <br>
+        <h1>Happy enjoy my game!</h1><br><br><br>
+        <img style="width:200px;height:200px;border-radius: 3px" src="image/avatar.jpg" alt="">
+    </div>
     <div id="display-top-scores"></div>
 </div>
 <script src="Figure.js"></script>
 <script src="Sticker.js"></script>
-<script src="main.js"></script>
+<script src="main_puzzle.js"></script>
 </body>
 </html>

@@ -112,5 +112,19 @@ table {
     height:60px;
     font-size:20px;
     text-align:center;
-
+}
+#description {
+    background-color:black;
+    width:374px;
+    height:739px;
+    border:1px solid greenyellow;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    color:greenyellow;
+}
+#description p {
+    margin-bottom: 8px;
 }
