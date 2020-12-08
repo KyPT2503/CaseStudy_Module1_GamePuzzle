@@ -351,6 +351,7 @@ function saveHighScore()
     }
     document.getElementById('input-name').value=``;
     displayHighScore();
+    document.getElementById('main').innerHTML=`<div class="game-over">GAME OVER<button class="button" onclick="start()">New Game</button>`;
 }
 function displayHighScore()
 {
@@ -402,10 +403,11 @@ function displayDescription()
 
 /*to reset local storage*/
 
-/*localStorage.clear();
+localStorage.clear();
 localStorage.setItem('Thư1','10');
 localStorage.setItem('Thư2','0');
 localStorage.setItem('Thư3','0');
 localStorage.setItem('Thư4','0');
-localStorage.setItem('Thư5','0');*/
+localStorage.setItem('Thư5','0');
+
 
